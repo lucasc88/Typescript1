@@ -1,28 +1,29 @@
 export class Negotiation {
 
-    #date;
-    #quantity;
-    #value;
+    //private sintaxe using underscore in the variables
+    private _date;
+    private _quantity;
+    private _value;
 
     constructor(date, quantity, value){
-        this.#date = date;
-        this.#quantity = quantity;
-        this.#value = value;
+        this._date = date;
+        this._quantity = quantity;
+        this._value = value;
     }
 
     get date(){
-        return this.#date;
+        return this._date;
     }
 
     get quantity(){
-        return this.#quantity;
+        return this._quantity;
     }
 
     get value(){
-        return this.#value;
+        return this._value;
     }
 
     get volume(){
-        return this.#value * this.#quantity;
+        return this._value * this._quantity;
     }
 }
