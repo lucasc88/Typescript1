@@ -6,7 +6,12 @@ export class NegotiationController {
         this.inputValue = document.querySelector('#value');
     }
     add() {
-        const negotiation = new Negotiation(this.inputDate.value, this.inputQuantity.value, this.inputValue.value);
+        //regular expresion to replace hifen for ,
+        const expression = /-/g;
+        const date = new Date(this.inputDate.value.replace(expression, ','));
+        const quantity = parseInt(this.inputQuantity.value);
+        const value = parseFloat(this.inputValue.value);
+        const negotiation = new Negotiation(date, quantity, value);
         console.log(negotiation);
     }
 }

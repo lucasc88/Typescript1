@@ -2,9 +2,10 @@ import { Negotiation } from "../models/negotiation.js";
 
 export class NegotiationController {
 
-    private inputDate;
-    private inputQuantity;
-    private inputValue;
+    //HTMLInputElement as a type for the Controller Variables
+    private inputDate: HTMLInputElement;
+    private inputQuantity: HTMLInputElement;
+    private inputValue: HTMLInputElement;
 
     constructor() {
         this.inputDate = document.querySelector('#date');
@@ -13,11 +14,13 @@ export class NegotiationController {
     }
 
     add() {
-        const negotiation = new Negotiation(
-            this.inputDate.value,
-            this.inputQuantity.value,
-            this.inputValue.value
-        );
+        //regular expresion to replace hifen for ,
+        const expression = /-/g;
+        const date = new Date(this.inputDate.value.replace(expression, ','));
+        const quantity = parseInt(this.inputQuantity.value);
+        const value = parseFloat(this.inputValue.value);
+
+        const negotiation = new Negotiation(date, quantity, value);
 
         console.log(negotiation);
     }
