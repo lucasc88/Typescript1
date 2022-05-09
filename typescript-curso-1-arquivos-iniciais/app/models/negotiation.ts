@@ -5,25 +5,25 @@ export class Negotiation {
     private _quantity;
     private _value;
 
-    constructor(date, quantity, value){
+    constructor(date, quantity, value) {
         this._date = date;
         this._quantity = quantity;
         this._value = value;
     }
 
-    get date(){
+    get date() {
         return this._date;
     }
 
-    get quantity(){
+    get quantity() {
         return this._quantity;
     }
 
-    get value(){
+    get value() {
         return this._value;
     }
 
-    get volume(){
+    get volume() {
         return this._value * this._quantity;
     }
 }
