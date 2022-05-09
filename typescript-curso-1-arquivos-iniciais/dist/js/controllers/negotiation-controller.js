@@ -8,6 +8,7 @@ export class NegotiationController {
     add() {
         const neg = this.negoatiationCreation();
         console.log(neg);
+        this.cleanForm();
     }
     negoatiationCreation() {
         //regular expresion to replace hifen for ,
@@ -16,5 +17,11 @@ export class NegotiationController {
         const quantity = parseInt(this.inputQuantity.value);
         const value = parseFloat(this.inputValue.value);
         return new Negotiation(date, quantity, value);
+    }
+    cleanForm() {
+        this.inputDate.value = '';
+        this.inputQuantity.value = '';
+        this.inputValue.value = '';
+        this.inputDate.focus();
     }
 }
