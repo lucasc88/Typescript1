@@ -11,7 +11,7 @@ export class Negotiation {
 
     //constructor using readonly in public variable. In this way we have a immutable object. Gets are no longer necessary
     constructor(
-        public readonly date: Date,
+        private readonly _date: Date,
         public readonly quantity: number,
         public readonly value: number
     ) {
@@ -31,5 +31,12 @@ export class Negotiation {
 
     get volume(): Number {
         return this.value * this.quantity;
+    }
+
+    //Now the object date is immutable as well. Defensive Programming
+    //Sometimes we need this technique because the Readonly is not enough
+    get date(): Date{
+        const date = new Date(this._date.getTime());
+        return date;
     }
 }
