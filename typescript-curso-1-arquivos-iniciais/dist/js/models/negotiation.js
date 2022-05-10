@@ -1,19 +1,28 @@
 export class Negotiation {
+    //In Typescript we can declare the the private variable as constructor parameters
+    //private sintaxe using underscore in the variables
+    //    constructor(
+    //        private _date: Date,
+    //        private _quantity: number,
+    //        private _value: number
+    //    ) {
+    //    }
+    //constructor using readonly in public variable. In this way we have a immutable object. Gets are no longer necessary
     constructor(date, quantity, value) {
-        this._date = date;
-        this._quantity = quantity;
-        this._value = value;
+        this.date = date;
+        this.quantity = quantity;
+        this.value = value;
     }
-    get date() {
-        return this._date;
-    }
-    get quantity() {
-        return this._quantity;
-    }
-    get value() {
-        return this._value;
-    }
+    // get date(): Date {
+    //     return this._date;
+    // }
+    // get quantity(): Number {
+    //     return this._quantity;
+    // }
+    // get value(): Number {
+    //     return this._value;
+    // }
     get volume() {
-        return this._value * this._quantity;
+        return this.value * this.quantity;
     }
 }
