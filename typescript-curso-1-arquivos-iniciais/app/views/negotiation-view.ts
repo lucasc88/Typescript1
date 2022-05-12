@@ -14,6 +14,7 @@ export class NegotiationView {
     //returning a Template String. Lines without concatenetion (+).
     //It's a table with array of Negotiation. Each element is added in the table
     //join('') replaces the , to nothing
+    //new Intl.DateTimeFormat().format() to format the date
     template(model: Negotiations): string {
         return `
             <table class="table table-hover table-bordered">
@@ -28,7 +29,7 @@ export class NegotiationView {
                     ${model.list().map(negotiation =>{
                         return `
                             <tr>
-                                <td>${negotiation.date}</td>
+                                <td>${new Intl.DateTimeFormat().format(negotiation.date)}</td>
                                 <td>${negotiation.quantity}</td>
                                 <td>${negotiation.value}</td>
                             </tr>
