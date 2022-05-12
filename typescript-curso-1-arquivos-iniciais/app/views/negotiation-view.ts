@@ -1,7 +1,7 @@
 import { Negotiations } from "../models/Negotiations.js";
 import { View } from "./view.js";
 
-export class NegotiationView extends View {
+export class NegotiationView extends View<Negotiations> {
 
     //returning a Template String. Lines without concatenetion (+).
     //It's a table with array of Negotiation. Each element is added in the table
@@ -32,8 +32,5 @@ export class NegotiationView extends View {
         `;
     }
 
-    //render the element using the selector received in the constructor
-    update(model: Negotiations): void{
-        this.element.innerHTML = this.template(model);
-    }
+
 }

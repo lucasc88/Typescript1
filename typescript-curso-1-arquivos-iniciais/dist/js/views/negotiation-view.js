@@ -28,8 +28,4 @@ export class NegotiationView extends View {
             </table>
         `;
     }
-    //render the element using the selector received in the constructor
-    update(model) {
-        this.element.innerHTML = this.template(model);
-    }
 }

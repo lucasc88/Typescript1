@@ -1,7 +1,7 @@
 import { View } from "./view.js";
 
 //View responsable to show the messages
-export class MessageView extends View {
+export class MessageView extends View<string> {
 
     template(model: string): string {
         return `
@@ -9,8 +9,4 @@ export class MessageView extends View {
         `;
     }
 
-    update(model: string): void {
-        const template = this.template(model);
-        this.element.innerHTML = template;
-    }
 }
