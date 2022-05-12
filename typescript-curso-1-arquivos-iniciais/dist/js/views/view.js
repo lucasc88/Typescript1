@@ -6,7 +6,4 @@ export class View {
     update(model) {
         this.element.innerHTML = this.template(model);
     }
-    template(model) {
-        throw Error('SubClass must override the TemplateMethod of the SuperClass');
-    }
 }
