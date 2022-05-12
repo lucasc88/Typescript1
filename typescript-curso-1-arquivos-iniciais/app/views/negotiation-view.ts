@@ -1,15 +1,7 @@
 import { Negotiations } from "../models/Negotiations.js";
+import { View } from "./view.js";
 
-export class NegotiationView {
-
-    //it's the HtmlElement div #negotiationView
-    private element: HTMLElement;
-
-
-    //NegotiationController will create an instance passing as a parameter the div Id #negotiationView
-    constructor(selector: string) {
-        this.element = document.querySelector(selector);//div #negotiationView
-    }
+export class NegotiationView extends View {
 
     //returning a Template String. Lines without concatenetion (+).
     //It's a table with array of Negotiation. Each element is added in the table

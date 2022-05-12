@@ -1,8 +1,5 @@
-export class NegotiationView {
-    //NegotiationController will create an instance passing as a parameter the div Id #negotiationView
-    constructor(selector) {
-        this.element = document.querySelector(selector); //div #negotiationView
-    }
+import { View } from "./view.js";
+export class NegotiationView extends View {
     //returning a Template String. Lines without concatenetion (+).
     //It's a table with array of Negotiation. Each element is added in the table
     //join('') replaces the , to nothing
