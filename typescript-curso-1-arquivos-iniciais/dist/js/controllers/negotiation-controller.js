@@ -9,11 +9,13 @@ export class NegotiationController {
         this.inputDate = document.querySelector('#date');
         this.inputQuantity = document.querySelector('#quantity');
         this.inputValue = document.querySelector('#value');
-        this.negotiationView.update();
+        this.negotiationView.update(this.negotiations);
     }
     add() {
         const neg = this.negoatiationCreation();
         this.negotiations.add(neg);
+        //when a new negotiation is add into array, the table is updated
+        this.negotiationView.update(this.negotiations);
         console.log(this.negotiations);
         this.cleanForm();
     }

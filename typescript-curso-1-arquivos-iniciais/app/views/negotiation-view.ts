@@ -1,3 +1,5 @@
+import { Negotiations } from "../models/Negotiations.js";
+
 export class NegotiationView {
 
     //it's the HtmlElement div #negotiationView
@@ -9,8 +11,10 @@ export class NegotiationView {
         this.element = document.querySelector(selector);//div #negotiationView
     }
 
-    //returning a Template String. With new lines without concatenetion (+). Declare the view template
-    template(): string {
+    //returning a Template String. Lines without concatenetion (+).
+    //It's a table with array of Negotiation. Each element is added in the table
+    //join('') replaces the , to nothing
+    template(model: Negotiations): string {
         return `
             <table class="table table-hover table-bordered">
                 <thead>
@@ -21,13 +25,22 @@ export class NegotiationView {
                     </tr>
                 </thead>
                 <tbody>
+                    ${model.list().map(negotiation =>{
+                        return `
+                            <tr>
+                                <td>${negotiation.date}</td>
+                                <td>${negotiation.quantity}</td>
+                                <td>${negotiation.value}</td>
+                            </tr>
+                        `;
+                    }).join('')}
                 </tbody>
             </table>
         `;
     }
 
     //render the element using the selector received in the constructor
-    update(): void{
-        this.element.innerHTML = this.template();
+    update(model: Negotiations): void{
+        this.element.innerHTML = this.template(model);
     }
 }
