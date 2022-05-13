@@ -13,5 +13,6 @@ export abstract class View<T> {
         this.element.innerHTML = this.template(model);
     }
 
-    abstract template(model: T): string;
+    //access modifier as protected just to avoid its access. Only Update Method is available to use
+    protected abstract template(model: T): string;
 }

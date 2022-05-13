@@ -4,6 +4,7 @@ export class NegotiationView extends View {
     //It's a table with array of Negotiation. Each element is added in the table
     //join('') replaces the , to nothing
     //new Intl.DateTimeFormat().format() to format the date
+    //access modifier as protected just to avoid its access. Only Update Method is available to use
     template(model) {
         return `
             <table class="table table-hover table-bordered">
