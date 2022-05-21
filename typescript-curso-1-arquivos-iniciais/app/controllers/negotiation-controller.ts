@@ -1,3 +1,4 @@
+import { WorkDay } from "../enums/WorkDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/Negotiations.js";
 import { MessageView } from "../views/message-view.js";
@@ -13,8 +14,6 @@ export class NegotiationController {
     //instance of NegotiationView using the div id #negotiationView
     private negotiationView = new NegotiationView('#negotiationView');
     private messageView = new MessageView('#messageView');
-    private SUNDAY: number = 0;
-    private SATURDAY: number = 6;
 
     constructor() {
         this.inputDate = document.querySelector('#date');
@@ -38,7 +37,7 @@ export class NegotiationController {
 
     private isWorkDay(date: Date): boolean {
         //0 - is Sunday , 6 - is Saturday
-        return date.getDay() > this.SUNDAY && date.getDay() < this.SATURDAY;
+        return date.getDay() > WorkDay.SUNDAY && date.getDay() < WorkDay.SATURDAY;
     }
 
     private negotiationCreation(): Negotiation {

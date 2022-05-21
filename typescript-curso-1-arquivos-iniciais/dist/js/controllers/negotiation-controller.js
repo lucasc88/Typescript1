@@ -1,3 +1,4 @@
+import { WorkDay } from "../enums/WorkDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/Negotiations.js";
 import { MessageView } from "../views/message-view.js";
@@ -8,8 +9,6 @@ export class NegotiationController {
         //instance of NegotiationView using the div id #negotiationView
         this.negotiationView = new NegotiationView('#negotiationView');
         this.messageView = new MessageView('#messageView');
-        this.SUNDAY = 0;
-        this.SATURDAY = 6;
         this.inputDate = document.querySelector('#date');
         this.inputQuantity = document.querySelector('#quantity');
         this.inputValue = document.querySelector('#value');
@@ -28,7 +27,7 @@ export class NegotiationController {
     }
     isWorkDay(date) {
         //0 - is Sunday , 6 - is Saturday
-        return date.getDay() > this.SUNDAY && date.getDay() < this.SATURDAY;
+        return date.getDay() > WorkDay.SUNDAY && date.getDay() < WorkDay.SATURDAY;
     }
     negotiationCreation() {
         //regular expresion to replace hifen for ,
