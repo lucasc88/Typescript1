@@ -12,14 +12,12 @@ export class NegotiationController {
         this.negotiationView.update(this.negotiations);
     }
     add() {
-        const neg = this.negoatiationCreation();
+        const neg = this.negotiationCreation();
         this.negotiations.add(neg);
-        //when a new negotiation is add into array, the table is updated
-        this.negotiationView.update(this.negotiations);
-        console.log(this.negotiations);
         this.cleanForm();
+        this.viewUpdate();
     }
-    negoatiationCreation() {
+    negotiationCreation() {
         //regular expresion to replace hifen for ,
         const expression = /-/g;
         const date = new Date(this.inputDate.value.replace(expression, ','));
@@ -32,5 +30,10 @@ export class NegotiationController {
         this.inputQuantity.value = '';
         this.inputValue.value = '';
         this.inputDate.focus();
+    }
+    viewUpdate() {
+        //when a new negotiation is add into array, the table is updated
+        this.negotiationView.update(this.negotiations);
+        console.log(this.negotiations);
     }
 }

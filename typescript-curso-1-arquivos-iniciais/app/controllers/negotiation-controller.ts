@@ -19,17 +19,14 @@ export class NegotiationController {
         this.negotiationView.update(this.negotiations);
     }
 
-    add(): void {
-        const neg = this.negoatiationCreation();
+    public add(): void {
+        const neg = this.negotiationCreation();
         this.negotiations.add(neg);
-        
-        //when a new negotiation is add into array, the table is updated
-        this.negotiationView.update(this.negotiations);
-        console.log(this.negotiations);
         this.cleanForm();
+        this.viewUpdate();
     }
 
-    negoatiationCreation(): Negotiation {
+    private negotiationCreation(): Negotiation {
         //regular expresion to replace hifen for ,
         const expression = /-/g;
         const date = new Date(this.inputDate.value.replace(expression, ','));
@@ -39,10 +36,16 @@ export class NegotiationController {
         return new Negotiation(date, quantity, value);
     }
 
-    cleanForm(): void {
+    private cleanForm(): void {
         this.inputDate.value = '';
         this.inputQuantity.value = '';
         this.inputValue.value = '';
         this.inputDate.focus();
+    }
+
+    private viewUpdate(): void {
+        //when a new negotiation is add into array, the table is updated
+        this.negotiationView.update(this.negotiations);
+        console.log(this.negotiations);
     }
 }
