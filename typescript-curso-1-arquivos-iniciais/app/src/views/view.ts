@@ -11,7 +11,7 @@ export abstract class View<T> {
 
 
     //render the element using the selector received in the constructor
-    @RuntimeLog()
+    @RuntimeLog(true)
     public update(model: T): void {
         this.element.innerHTML = this.template(model);
     }
