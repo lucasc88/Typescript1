@@ -15,10 +15,13 @@ export class NegotiationController {
     private negotiationView = new NegotiationView('#negotiationView');
     private messageView = new MessageView('#messageView');
 
+    //The "strictNullChecks": true in the tsconfig.json is to force the developer to deal with possible null variables
+    //In this case bellow, a explicit cast is applied in the document.querySelector();
+    // as HTMLInputElement or <HTMLInputElement> are 2 valid ways to cast
     constructor() {
-        this.inputDate = document.querySelector('#date');
-        this.inputQuantity = document.querySelector('#quantity');
-        this.inputValue = document.querySelector('#value');
+        this.inputDate = <HTMLInputElement>document.querySelector('#date');
+        this.inputQuantity = document.querySelector('#quantity') as HTMLInputElement;
+        this.inputValue = document.querySelector('#value') as HTMLInputElement;
         this.negotiationView.update(this.negotiations);
     }
 
