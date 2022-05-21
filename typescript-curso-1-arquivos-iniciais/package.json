@@ -9,7 +9,7 @@
     "start": "concurrently \"npm run watch\" \"npm run server\"",
     "compile": "tsc",
     "watch": "tsc -w",
-    "clean": "del -rf node_modules"
+    "clean": "rmdir /s node_modules"
   },
   "author": "",
   "license": "ISC",

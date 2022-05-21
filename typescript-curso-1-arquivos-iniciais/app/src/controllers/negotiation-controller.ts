@@ -1,3 +1,4 @@
+import { RuntimeLog } from "../decorators/RuntimeLog.js";
 import { WorkDay } from "../enums/WorkDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/Negotiations.js";
@@ -25,6 +26,7 @@ export class NegotiationController {
         this.negotiationView.update(this.negotiations);
     }
 
+    @RuntimeLog()
     public add(): void {
         const neg = Negotiation.createFrom(
             this.inputDate.value,
@@ -57,6 +59,5 @@ export class NegotiationController {
     private viewUpdate(): void {
         //when a new negotiation is add into array, the table is updated
         this.negotiationView.update(this.negotiations);
-        console.log(this.negotiations);
     }
 }

@@ -1,3 +1,5 @@
+import { RuntimeLog } from "../decorators/RuntimeLog.js";
+
 export abstract class View<T> {
 
     //it's the HTML Element get by Id using the document.querySelector in the constructor
@@ -9,6 +11,7 @@ export abstract class View<T> {
 
 
     //render the element using the selector received in the constructor
+    @RuntimeLog()
     public update(model: T): void {
         this.element.innerHTML = this.template(model);
     }

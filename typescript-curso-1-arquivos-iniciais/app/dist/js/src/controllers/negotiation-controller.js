@@ -35,6 +35,5 @@ export class NegotiationController {
     }
     viewUpdate() {
         this.negotiationView.update(this.negotiations);
-        console.log(this.negotiations);
     }
 }
