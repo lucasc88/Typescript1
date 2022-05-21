@@ -1,4 +1,4 @@
-import { NegotiationController } from "./controllers/negotiation-controller.js";
+import { NegotiationController } from "./src/controllers/negotiation-controller.js";
 
 //new Controller instance
 const controller = new NegotiationController();
