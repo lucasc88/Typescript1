@@ -1,5 +1,6 @@
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/Negotiations.js";
+import { MessageView } from "../views/message-view.js";
 import { NegotiationView } from "../views/negotiation-view.js";
 
 export class NegotiationController {
@@ -11,6 +12,9 @@ export class NegotiationController {
     private negotiations = new Negotiations();
     //instance of NegotiationView using the div id #negotiationView
     private negotiationView = new NegotiationView('#negotiationView');
+    private messageView = new MessageView('#messageView');
+    private SUNDAY: number = 0;
+    private SATURDAY: number = 6;
 
     constructor() {
         this.inputDate = document.querySelector('#date');
@@ -21,9 +25,20 @@ export class NegotiationController {
 
     public add(): void {
         const neg = this.negotiationCreation();
+
+        if (!this.isWorkDay(neg.date)) {
+            this.messageView.update('Trading is only allowed on business days.');
+            return;
+        }
         this.negotiations.add(neg);
         this.cleanForm();
         this.viewUpdate();
+        this.messageView.update('The transaction was successful!');
+    }
+
+    private isWorkDay(date: Date): boolean {
+        //0 - is Sunday , 6 - is Saturday
+        return date.getDay() > this.SUNDAY && date.getDay() < this.SATURDAY;
     }
 
     private negotiationCreation(): Negotiation {
