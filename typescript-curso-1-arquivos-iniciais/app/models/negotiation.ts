@@ -39,4 +39,14 @@ export class Negotiation {
         const date = new Date(this._date.getTime());
         return date;
     }
+
+    public static createFrom(dateString: string, quantityString: string, valueString: string): Negotiation{
+        //regular expresion to replace hifen for ,
+        const expression = /-/g;
+        const date = new Date(dateString.replace(expression, ','));
+        const quantity = parseInt(quantityString);
+        const value = parseFloat(valueString);
+
+        return new Negotiation(date, quantity, value);
+    }
 }
