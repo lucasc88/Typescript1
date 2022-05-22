@@ -4,6 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { domInjector } from "../decorators/dom-injector.js";
 import { RuntimeLog } from "../decorators/RuntimeLog.js";
 import { WorkDay } from "../enums/WorkDay.js";
 import { Negotiation } from "../models/negotiation.js";
@@ -15,9 +16,6 @@ export class NegotiationController {
         this.negotiations = new Negotiations();
         this.negotiationView = new NegotiationView('#negotiationView');
         this.messageView = new MessageView('#messageView');
-        this.inputDate = document.querySelector('#date');
-        this.inputQuantity = document.querySelector('#quantity');
-        this.inputValue = document.querySelector('#value');
         this.negotiationView.update(this.negotiations);
     }
     add() {
@@ -44,6 +42,15 @@ export class NegotiationController {
         this.negotiationView.update(this.negotiations);
     }
 }
+__decorate([
+    domInjector('#date')
+], NegotiationController.prototype, "inputDate", void 0);
+__decorate([
+    domInjector('#quantity')
+], NegotiationController.prototype, "inputQuantity", void 0);
+__decorate([
+    domInjector('#value')
+], NegotiationController.prototype, "inputValue", void 0);
 __decorate([
     RuntimeLog()
 ], NegotiationController.prototype, "add", null);
