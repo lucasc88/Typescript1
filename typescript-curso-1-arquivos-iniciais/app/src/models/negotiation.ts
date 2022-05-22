@@ -35,12 +35,12 @@ export class Negotiation {
 
     //Now the object date is immutable as well. Defensive Programming
     //Sometimes we need this technique because the Readonly is not enough
-    get date(): Date{
+    get date(): Date {
         const date = new Date(this._date.getTime());
         return date;
     }
 
-    public static createFrom(dateString: string, quantityString: string, valueString: string): Negotiation{
+    public static createFrom(dateString: string, quantityString: string, valueString: string): Negotiation {
         //regular expresion to replace hifen for ,
         const expression = /-/g;
         const date = new Date(dateString.replace(expression, ','));
@@ -48,5 +48,13 @@ export class Negotiation {
         const value = parseFloat(valueString);
 
         return new Negotiation(date, quantity, value);
+    }
+
+    public isEqual(n: Negotiation): boolean {
+        return this.date.getDate() == n.date.getDate()
+            && this.date.getMonth() == n.date.getMonth()
+            && this.date.getFullYear() == n.date.getFullYear()
+            && this.quantity == n.quantity
+            && this.value == n.value;
     }
 }

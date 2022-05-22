@@ -18,4 +18,11 @@ export class Negotiation {
         const value = parseFloat(valueString);
         return new Negotiation(date, quantity, value);
     }
+    isEqual(n) {
+        return this.date.getDate() == n.date.getDate()
+            && this.date.getMonth() == n.date.getMonth()
+            && this.date.getFullYear() == n.date.getFullYear()
+            && this.quantity == n.quantity
+            && this.value == n.value;
+    }
 }

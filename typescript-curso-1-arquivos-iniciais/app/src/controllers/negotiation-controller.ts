@@ -65,9 +65,16 @@ export class NegotiationController {
         this.negotiationView.update(this.negotiations);
     }
 
-    
+
     importData(): void {
         this.negotiationsService.getNegotiationsFromAPI()
+            .then(negotiationsToday => {
+                return negotiationsToday.filter(negotiationToday => {
+                    return !this.negotiations.
+                        list()
+                        .some(n => n.isEqual(negotiationToday));
+                })
+            })
             .then(negotiationsFromAPI => {//here the data is an Array<Negotiation>
                 for (let n of negotiationsFromAPI) {
                     this.negotiations.add(n);//add in the Negotiations
