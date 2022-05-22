@@ -3,6 +3,7 @@ import { RuntimeLog } from "../decorators/RuntimeLog.js";
 import { WorkDay } from "../enums/WorkDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/Negotiations.js";
+import { NegotiationsService } from "../services/negotiation-service.js";
 import { MessageView } from "../views/message-view.js";
 import { NegotiationView } from "../views/negotiation-view.js";
 
@@ -19,6 +20,8 @@ export class NegotiationController {
     //instance of NegotiationView using the div id #negotiationView
     private negotiationView = new NegotiationView('#negotiationView');
     private messageView = new MessageView('#messageView');
+    private negotiationsService = new NegotiationsService();
+
 
     //The "strictNullChecks": true in the tsconfig.json is to force the developer to deal with possible null variables
     //In this case bellow, a explicit cast is applied in the document.querySelector();
@@ -62,23 +65,14 @@ export class NegotiationController {
         this.negotiationView.update(this.negotiations);
     }
 
-    //fetch API is used to request an external API. Assynchronous function
+    
     importData(): void {
-        fetch('http://localhost:8080/dados')
-            .then(res => {
-                return res.json();//JS do the parse to JSON
-            })
-            .then((data: any[]) => {//the response is a Array<any>. Map to create Negotiation objects
-                return data.map(d => {
-                    return new Negotiation(new Date(), d.vezes, d.montante)
-                })
-            })
+        this.negotiationsService.getNegotiationsFromAPI()
             .then(negotiationsFromAPI => {//here the data is an Array<Negotiation>
                 for (let n of negotiationsFromAPI) {
                     this.negotiations.add(n);//add in the Negotiations
                 }
                 this.negotiationView.update(this.negotiations);
             });
-
     }
 }

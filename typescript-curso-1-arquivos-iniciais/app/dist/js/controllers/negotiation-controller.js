@@ -9,6 +9,7 @@ import { RuntimeLog } from "../decorators/RuntimeLog.js";
 import { WorkDay } from "../enums/WorkDay.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/Negotiations.js";
+import { NegotiationsService } from "../services/negotiation-service.js";
 import { MessageView } from "../views/message-view.js";
 import { NegotiationView } from "../views/negotiation-view.js";
 export class NegotiationController {
@@ -16,6 +17,7 @@ export class NegotiationController {
         this.negotiations = new Negotiations();
         this.negotiationView = new NegotiationView('#negotiationView');
         this.messageView = new MessageView('#messageView');
+        this.negotiationsService = new NegotiationsService();
         this.negotiationView.update(this.negotiations);
     }
     add() {
@@ -42,15 +44,7 @@ export class NegotiationController {
         this.negotiationView.update(this.negotiations);
     }
     importData() {
-        fetch('http://localhost:8080/dados')
-            .then(res => {
-            return res.json();
-        })
-            .then((data) => {
-            return data.map(d => {
-                return new Negotiation(new Date(), d.vezes, d.montante);
-            });
-        })
+        this.negotiationsService.getNegotiationsFromAPI()
             .then(negotiationsFromAPI => {
             for (let n of negotiationsFromAPI) {
                 this.negotiations.add(n);
