@@ -61,4 +61,24 @@ export class NegotiationController {
         //when a new negotiation is add into array, the table is updated
         this.negotiationView.update(this.negotiations);
     }
+
+    //fetch API is used to request an external API. Assynchronous function
+    importData(): void {
+        fetch('http://localhost:8080/dados')
+            .then(res => {
+                return res.json();//JS do the parse to JSON
+            })
+            .then((data: any[]) => {//the response is a Array<any>. Map to create Negotiation objects
+                return data.map(d => {
+                    return new Negotiation(new Date(), d.vezes, d.montante)
+                })
+            })
+            .then(negotiationsFromAPI => {//here the data is an Array<Negotiation>
+                for (let n of negotiationsFromAPI) {
+                    this.negotiations.add(n);//add in the Negotiations
+                }
+                this.negotiationView.update(this.negotiations);
+            });
+
+    }
 }
